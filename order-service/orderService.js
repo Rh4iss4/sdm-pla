@@ -1,6 +1,6 @@
 require ('dotenv').config();
 const express = require ('express');
-const mongoose = require ('mongoose');_
+const mongoose = require ('mongoose');
 
 
 const app = express();
@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema({
     createdAt: {type: Date, default: Date.now},
 });
 
-const Order = mongoode.model('Order', orderSchema);
+const Order = mongoose.model('Order', orderSchema);
 
 app.post('/pedidos', async (req, res) => {
     try {
@@ -34,7 +34,7 @@ app.post('/pedidos', async (req, res) => {
 
             const order = new Order({userId, items, total});
             const saved = await order.save();
-            console.log(`Pedido criado: ${saved_id} para user ${userId}`) 
+            console.log(`Pedido criado: ${saved._id} para user ${userId}`) 
             res.status(201).json(saved);
             } catch (error) {
                 console.error('Error creating order:', error);
@@ -59,6 +59,7 @@ app.get('pedidos', async (req, res) => {
             console.log('Order service running on port 4000');
         
 });
+
 
 
 
